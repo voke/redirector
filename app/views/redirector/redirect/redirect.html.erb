@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title><%= t('redirector.redirecting_to') %></title>
+
+<style>
+	
+	p {
+		border:1px solid #DDDDDD;
+		color:#666;
+		font: small Lucida Grande,Helvetica;
+		margin:200px auto 0;
+		padding:20px;
+		text-align:center;
+		width:300px;
+		font-weight: bold;	
+	}
+	
+</style>
+
+</head>
+
+<body>
+
+<p><%= t('redirector.redirecting_to') %></p>
+
+</body>
+
+<script language="Javascript">document.location.href = "<%= raw @redirect_path %>";</script>
+
+</html>
