@@ -1,5 +1,4 @@
 en:
   redirector:
     redirecting_to: 'Redirecting...'
-    
-
+    follow_link: 'If you are not redirected automatically within a few seconds then click this link'

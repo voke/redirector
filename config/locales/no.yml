@@ -1,5 +1,4 @@
 "no":
   redirector:
     redirecting_to: 'Du har nå videresendt...'
-    
-
+    follow_link: 'Hvis du ikke blir omdirigert automatisk i løpet av noen få sekunder til å klikke på denne linken'

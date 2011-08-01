@@ -3,6 +3,7 @@ module Redirector
     
     # Defines the methods to call when generating the redirect path
     # redirect_with :base => proc { |x| x.store.affiliate_uri }, :path => :url, :epi => proc { |x| "foo_#{x.id}"}
+    #
     def redirect_with(*args)     
       include Redirector::Redirectable
       options = args.extract_options!

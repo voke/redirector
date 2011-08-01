@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name        = "redirector"
   s.version     = Redirector::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
+  s.authors     = ["Gustav Jonsson"]
+  s.email       = ["gustav@invoke.se"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{generates redirect action for resources}
+  s.description = %q{generates redirect action for resources}
 
   s.rubyforge_project = "redirector"
 

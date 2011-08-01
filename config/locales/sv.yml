@@ -1,5 +1,4 @@
 sv:
   redirector:
     redirecting_to: 'Du skickas nu vidare...'
-    
-
+    follow_link: 'Om du inte omdirigeras automatiskt inom några sekunder så klicka på denna länk'
