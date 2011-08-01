@@ -8,7 +8,7 @@ for a specific resource.
 class Product
   belongs_to :store
   delegate :parameterize, to: :name
-  redirect_with base: -> { |x| x.store.affiliate_uri }, path: :url, epi: :parameterize
+  redirect_with base: -> x { x.store.affiliate_uri }, path: :url, epi: :parameterize
 end
 ```
 
