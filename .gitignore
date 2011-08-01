@@ -1,5 +1,7 @@
 *.gem
-.bundle
 .DS_Store
 Gemfile.lock
-pkg/*
+.bundle/
+log/*.log
+pkg/
+test/dummy/log/*.log
