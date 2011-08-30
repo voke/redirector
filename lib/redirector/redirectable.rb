@@ -53,6 +53,8 @@ module Redirector
             send(callback)
           when Proc
             callback.call(self)
+          else
+            callback
         end
       end
           

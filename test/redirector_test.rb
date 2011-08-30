@@ -14,7 +14,7 @@ class RedirectorTest < ActiveSupport::TestCase
     p = Fabricate.build :product
     assert_equal 'http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi=product_foobar', p.redirect_path
   end
-    
+      
   test 'skip url escape if affiliate_url matches ignore filter' do
     p = Fabricate.build :product, affiliate_uri: 'http://affiliator.com?url={url}&epi={epi}'
     assert_equal 'http://affiliator.com?url=http://store.com/product&epi=product_foobar', p.redirect_path
@@ -28,6 +28,13 @@ class RedirectorTest < ActiveSupport::TestCase
   test 'should return nil when no path exists' do
     p = Fabricate.build :product, url: nil
     assert_nil p.redirect_path
+  end
+  
+  # TODO : replace class_eval with something else?
+  test "should support String as option" do
+    p = Fabricate.build :product
+    p.class_eval { redirect_with :base => proc { |x| x.affiliate_uri }, :path => :url, :epi => 'string' }
+    assert_equal 'http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi=string', p.redirect_path
   end
       
   test "custom finder method" do
@@ -67,5 +74,5 @@ class Redirector::RedirectControllerTest < ActionController::TestCase
     get :redirect, product_id: product.id
     assert_equal 'http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi=11223344556677889900', assigns(:redirect_path)
   end
-    
+      
 end

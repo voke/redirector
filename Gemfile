@@ -10,7 +10,7 @@ group :development do
   gem 'mongoid'
   gem 'bson_ext'
   gem 'rails', '3.1.0.rc4'
-  gem 'turn'
+  # gem 'turn'
 end
   
   
