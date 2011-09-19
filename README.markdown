@@ -23,5 +23,5 @@ end
 Generate the redirect link:
 
 ``` erb
-<%= link_for 'Go to product', product_redirect_path(@product) %>
+<%= link_for 'Go to product', redirect_product_path(@product) %>
 ```
