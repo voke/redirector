@@ -45,7 +45,6 @@ module Redirector
       end
         
       # Make different call depending on option.
-      # Returns nil if key is empty. (doh!)
       #
       def call_redirect_option(key)
         case callback = redirect_attributes_options[key]

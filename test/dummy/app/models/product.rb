@@ -12,4 +12,8 @@ class Product
     "product_#{name}"
   end
 
+  def to_param
+    name
+  end
+
 end
