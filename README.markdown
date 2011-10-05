@@ -24,14 +24,11 @@ Generate the redirect link:
 
 ``` erb
 <<<<<<< HEAD
-<%= link_for 'Go to product', product_redirect_path(@product) %>
+<%= link_for 'Go to product', redirect_product_path(@product) %>
 ```
 
 Or use the view helper:
 
 ``` erb
 <%= redirect_link_to 'Go to product', @product %>
-=======
-<%= link_for 'Go to product', redirect_product_path(@product) %>
->>>>>>> 7aeb3b4767838469e9d95460aeda4e86673ad051
 ```
