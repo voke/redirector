@@ -31,3 +31,9 @@ Or use the view helper:
 ``` erb
 <%= redirect_link_to 'Go to product', @product %>
 ```
+
+which generates following html:
+
+``` html
+<a href="/products/to_param/redirect" data-external="true" rel="nofollow">Go to product</a>
+```
