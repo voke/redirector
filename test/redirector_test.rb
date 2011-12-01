@@ -91,7 +91,7 @@ class Redirector::ViewHelpersTest < ActionView::TestCase
   end
   
   test 'Included in ActionView::Base' do
-    assert ActionView::Base.instance_methods.include? 'redirect_link_to'
+    assert ActionView::Base.instance_methods.include? :redirect_link_to
   end
       
   test 'redirect_link_to with resource' do
