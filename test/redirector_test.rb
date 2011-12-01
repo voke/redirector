@@ -90,9 +90,9 @@ class Redirector::ViewHelpersTest < ActionView::TestCase
     @product = Fabricate(:product, name: 'foobar')
   end
   
-  # test 'Included in ActionView::Base' do
-  #   assert ActionView::Base::respond_to? :redirect_link_to
-  # end
+  test 'Included in ActionView::Base' do
+    assert ActionView::Base.instance_methods.include? 'redirect_link_to'
+  end
       
   test 'redirect_link_to with resource' do
     expected = %q{<a href="/products/foobar/redirect" data-external="true" rel="nofollow">Go to product</a>}
@@ -112,6 +112,11 @@ class Redirector::ViewHelpersTest < ActionView::TestCase
   test 'redirect_link_to with block and additional html_options' do
     expected = %q{<a href="/products/foobar/redirect" class="qwerty" data-external="true" rel="nofollow">My block data</a>}
     assert_equal(expected, redirect_link_to(@product, class: 'qwerty') { 'My block data'} )
+  end
+  
+  test 'redirect_link_to with overwritten html_options' do
+    expected = %q{<a href="/products/foobar/redirect" class="qwerty" data-external="false" rel="foobar">My block data</a>}
+    assert_equal(expected, redirect_link_to(@product, class: 'qwerty', 'data-external' => false, 'rel' => 'foobar' ) { 'My block data'} )
   end
   
 end
