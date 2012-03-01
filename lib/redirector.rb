@@ -25,10 +25,11 @@ module Redirector
   
   mattr_accessor :redirect_link_options
   @@redirect_link_options = { 'data-external' => 'true', 'rel' => 'nofollow' }
-   
-  # Default way to setup
+  
   def self.setup
     yield self
   end
   
 end
+
+
