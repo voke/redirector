@@ -6,7 +6,9 @@ module Redirector
       
       # TODO : I can't find a better way to include ViewHelpers by default.
       initializer "redirector.view_helpers" do
-        ActionView::Base.send :include, Redirector::ViewHelpers
+        config.after_initialize do
+          ActionView::Base.send :include, Redirector::ViewHelpers
+        end
       end
       
   end
