@@ -1,5 +1,6 @@
 module Redirector
   
+  require "uri"
   require 'redirector/engine'
   require 'redirector/redirect_path'
   require 'redirector/redirectable'
