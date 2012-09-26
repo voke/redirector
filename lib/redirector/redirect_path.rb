@@ -1,4 +1,5 @@
 require "cgi"
+require "addressable/uri"
 
 module Redirector
 
@@ -17,6 +18,7 @@ module Redirector
       def base_with_landing_page
         base.gsub(Redirector::url_pattern, try_escape_url)
       end
+      @host ||= Addressable::URI.parse(base).host
 
       def host
         @host ||= URI.parse(base).host
