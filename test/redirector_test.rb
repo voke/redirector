@@ -7,6 +7,14 @@ class RedirectorTest < ActiveSupport::TestCase
     assert_kind_of Module, Redirector
   end
 
+  test "merge with tracking_url if it exists" do
+    Redirector.setup do |config|
+      config.tracking_url = "http://track.example.com/?url={url}"
+    end
+    p = Fabricate.build :product
+    assert_equal 'http://track.example.com/?url=http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi=product_foobar', p.redirect_path
+  end
+
   test "ensure that Mongoid::Document responds to redirect_with" do
     assert Product.respond_to? :redirect_with
   end
