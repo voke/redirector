@@ -24,12 +24,14 @@ module Redirector
   @@tracking_url = nil
 
   # Affiliate networks that doesn't support encoded urls for landing-pages
+  # NOTE: can use asterix (*) to support subdomains (for example)
   mattr_accessor :ignore_encoding_hosts
   @@ignore_encoding_hosts = [
-    "affiliator.com",
     "adtraction.com",
-    "partner-ads.com",
-    "smartresponse-media.com"
+    'track.adtraction.com',
+    '*.partner-ads.com',
+    'smartresponse-media.com',
+    'ads.guava-affiliate.com'
   ]
 
   mattr_accessor :redirect_link_options
