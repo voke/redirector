@@ -27,7 +27,7 @@ module Redirector
   # NOTE: can use asterix (*) to support subdomains (for example)
   mattr_accessor :ignore_encoding_hosts
   @@ignore_encoding_hosts = [
-    "adtraction.com",
+    'click.affiliator.com',
     'track.adtraction.com',
     '*.partner-ads.com',
     'smartresponse-media.com',
