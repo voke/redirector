@@ -23,6 +23,10 @@ module Redirector
       def host
         @host ||= URI.parse(base).host
       end
+    def parse_to_regex(str)
+      escaped = Regexp.escape(str).gsub('\*','.*?')
+      Regexp.new "^#{escaped}$", Regexp::IGNORECASE
+    end
 
       def ignore_encoding?
         Redirector::ignore_encoding_hosts.include?(host)
