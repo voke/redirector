@@ -25,8 +25,8 @@ class RedirectorTest < ActiveSupport::TestCase
   end
 
   test 'skip url escape if affiliate_url matches ignore filter' do
-    p = Fabricate.build :product, affiliate_uri: 'http://affiliator.com?url={url}&epi={epi}'
-    assert_equal 'http://affiliator.com?url=http://store.com/product&epi=product_foobar', p.redirect_path
+    p = Fabricate.build :product, affiliate_uri: 'http://click.affiliator.com?url={url}&epi={epi}'
+    assert_equal 'http://click.affiliator.com?url=http://store.com/product&epi=product_foobar', p.redirect_path
   end
 
   test 'should use (unescaped) path_url if build_url is blank' do
@@ -46,21 +46,14 @@ class RedirectorTest < ActiveSupport::TestCase
   end
 
   test "custom finder method as option" do
-    pending 'the expects() method doesnt work as expected. Read more: https://github.com/floehopper/mocha/issues/26'
     klass = Class.new Product
     klass.class_eval do
       redirect_with :base => 'hello', :path => 'world', :epi => 'foo', :find_method => :my_custom_find
       def self.my_custom_find(resource_id); end
     end
-    klass.expects(:attribute_names).twice
+    klass.expects(:my_custom_find).once
     klass.find_for_redirect(123)
   end
-
-end
-
-class RedirectPathTest < ActiveSupport::TestCase
-
-  test "."
 
 end
 
@@ -87,13 +80,6 @@ class Redirector::RedirectControllerTest < ActionController::TestCase
     assert_response :success
     assert_template "redirect"
     assert_select "script", 'document.location.href = "http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi=product_foobar";'
-  end
-
-  test 'replace epi with cookie value if it exists' do
-    product = Fabricate :product, affiliate_uri: 'http://network.com?url={url}&epi={invk_epi}'
-    @request.cookies[:invk_uid] = "11223344556677889900"
-    get :redirect, product_id: product.id
-    assert_equal 'http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi=11223344556677889900', assigns(:redirect_path)
   end
 
 end

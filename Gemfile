@@ -9,4 +9,5 @@ gem 'mocha', :require => false
 gem 'mongoid', '3.0.0'
 
 gem 'rails', '3.1.0'
-gem 'guard'
+
+gem 'guard-test'
