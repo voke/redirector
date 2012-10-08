@@ -31,14 +31,14 @@ module Redirector
       @host ||= Addressable::URI.parse(base).host
     end
 
-    def parse_to_regex(str)
+    def parse_to_regexp(str)
       escaped = Regexp.escape(str).gsub('\*','.*?')
       Regexp.new "^#{escaped}$", Regexp::IGNORECASE
     end
 
     def ignore_encoding?
       Redirector::ignore_encoding_hosts.any? do |rule|
-        regexp = parse_to_regex(rule)
+        regexp = parse_to_regexp(rule)
         host.match(regexp)
       end
     end
