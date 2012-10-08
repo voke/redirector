@@ -16,6 +16,14 @@ module Redirector
       assert_equal "ads.example.com", path.host
     end
 
+    test "raise error if host can't be extracted" do
+      url_without_http = "foobar.com/whatever"
+      path = RedirectPath.new(base: url_without_http)
+      assert_raises ArgumentError do
+        path.host
+      end
+    end
+
     test "parse string to regexp" do
       rule = "*.example.com"
       pattern = RedirectPath.new.parse_to_regexp(rule)

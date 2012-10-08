@@ -28,7 +28,11 @@ module Redirector
     end
 
     def host
-      @host ||= Addressable::URI.parse(base).host
+      @host ||= extract_host_or_raise
+    end
+
+    def extract_host_or_raise
+      Addressable::URI.parse(base).host || raise(ArgumentError, "Could not extract host from #{base}")
     end
 
     def parse_to_regexp(str)
