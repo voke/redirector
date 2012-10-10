@@ -5,7 +5,7 @@ require "action_mailer/railtie"
 require "active_resource/railtie"
 require "rails/test_unit/railtie"
 
-require 'mongoid'
+require "mongoid" # TODO: Hack to load it before redirector here in test app
 
 Bundler.require
 require "redirector"

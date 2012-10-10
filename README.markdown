@@ -37,3 +37,16 @@ which generates following html:
 ``` html
 <a href="/products/to_param/redirect" data-external="true" rel="nofollow">Go to product</a>
 ```
+
+Add tracking url:
+
+Redirect to the page through a tracking url. The url parameter is unescaped.
+
+*config/redirector.rb*
+``` ruby
+Redirector.setup do |config|
+	config.tracking_url = "http://example.com/track/{url}"
+end
+```
+
+

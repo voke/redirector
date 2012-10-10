@@ -11,14 +11,22 @@ Rails.backtrace_cleaner.remove_silencers!
 Dir["#{File.dirname(__FILE__)}/fabricators/**/*.rb"].each { |f| require f }
 
 class ActiveSupport::TestCase
-  
+
   # Helper methods to be used by all tests here...
-  
-  # Drop all columns after each test case.
+
   def teardown
-    Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+
+    # Drop all columns after each test case.
+    Mongoid.purge!
+    Mongoid::IdentityMap.clear
+
+    # Reset tracking_url
+    Redirector.setup do |config|
+      config.tracking_url = nil
+    end
+
   end
-  
+
   # Make sure that each test case has a teardown
   # method to clear the db after each test.
   def inherited(base)
@@ -26,5 +34,5 @@ class ActiveSupport::TestCase
       super
     end
   end
-    
+
 end

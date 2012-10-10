@@ -5,3 +5,4 @@ Gemfile.lock
 log/*.log
 pkg/
 test/dummy/log/*.log
+TODO
