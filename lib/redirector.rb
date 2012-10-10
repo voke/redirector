@@ -30,7 +30,7 @@ module Redirector
     'click.affiliator.com',
     'track.adtraction.com',
     '*.partner-ads.com',
-    'smartresponse-media.com',
+    '*.smartresponse-media.com',
     'ads.guava-affiliate.com'
   ]
 
