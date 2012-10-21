@@ -47,7 +47,7 @@ module Redirector
 
       def try_add_redirect_tracking_url(url)
         if Redirector::tracking_url
-          Redirector::tracking_url.gsub(Redirector::url_pattern, url)
+          Redirector::tracking_url.gsub(Redirector::url_pattern, url.to_s)
         else
           url
         end

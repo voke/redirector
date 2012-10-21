@@ -56,6 +56,9 @@ class RedirectorTest < ActiveSupport::TestCase
     assert_equal 'http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi={invk_epi}', p.redirect_path
   end
 
+  test "without epi option" do
+  end
+
   test "custom finder method as option" do
     klass = Class.new Product
     klass.class_eval do
