@@ -24,7 +24,8 @@ module Redirector
       end
 
     end
-
+    
+    # TODO: Add redirect_url as alias
     # Returns the generated url depending on redirect_options.
     # This is the method that is called on the resource in the controller.
     #
