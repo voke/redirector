@@ -3,4 +3,8 @@ class ApplicationController < ActionController::Base
 
   helper Redirector::Engine::helpers
 
+  def before_redirect(resource)
+    raise "CALLBACK! #{resource.name}"
+  end
+
 end
