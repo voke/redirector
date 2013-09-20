@@ -4,11 +4,12 @@ source "http://rubygems.org"
 gemspec
 
 gem 'fabrication'
-gem 'mocha', require: false
+
+gem 'mocha', '0.14.0', require: false
 
 gem 'mongoid', '3.0.0'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.12'
 
 gem 'guard-test'
 gem 'rb-fsevent', '~> 0.9.1'

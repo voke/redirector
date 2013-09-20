@@ -10,7 +10,7 @@ module ActionDispatch::Routing
     # 
     def redirect_for(*resources)
       resources.map(&:to_s).each do |resource|
-        match "#{resource}/:#{resource.singularize}_id/redirect" => "redirector/redirect#redirect", :as => "redirect_#{resource.singularize}"
+        get "#{resource}/:#{resource.singularize}_id/redirect" => "redirector/redirect#redirect", :as => "redirect_#{resource.singularize}"
       end
     end
       
