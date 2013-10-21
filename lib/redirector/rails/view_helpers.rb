@@ -1,6 +1,6 @@
 module Redirector
   module ViewHelpers
-       
+
     # redirect_link('Go to product', product)
     def redirect_link_to(*args, &block)
       resource_index = block_given? ? 0 : 1
@@ -8,6 +8,9 @@ module Redirector
       args[resource_index+1] = (args[resource_index+1] || {}).reverse_merge(Redirector::redirect_link_options)
       link_to(*args,&block)
     end
-              
+
+    def analytics_helper
+    end
+
   end
 end

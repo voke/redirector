@@ -3,10 +3,10 @@
 <head>
 	<title><%= t('redirector.redirecting_to') %></title>
 
-	<%= analytics_helper if defined? Analyst %>
+	<%= analytics_helper %>
 
 	<style>
-	
+
 		div {
 			border: 1px solid #DDDDDD;
 			color: #666;
@@ -15,15 +15,15 @@
 			padding: 20px;
 			text-align: center;
 			width: 300px;
-			font-weight: bold;	
+			font-weight: bold;
 		}
-		
+
 		a, a:visited {
 			color: #26527c;
 			text-decoration: none;
 			border-bottom: 1px solid #26527c;
 		}
-	
+
 	</style>
 
 </head>
@@ -34,7 +34,7 @@
 		<p><%= t('redirector.redirecting_to') %></p>
 		<p><%= link_to(t('redirector.follow_link'), @redirect_path) %></p>
 	</div>
-	
+
 <script language="javascript">document.location.href = "<%= raw @redirect_path %>";</script>
 
 </body>
