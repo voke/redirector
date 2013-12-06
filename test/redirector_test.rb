@@ -90,9 +90,6 @@ class Redirector::RedirectControllerTest < ActionController::TestCase
 
   test 'redirect action and view' do
     product = Product.new
-
-    puts "PRODUCT_ID: #{product.id.inspect}"
-
     get :redirect, product_id: product.id
     assert_response :success
     assert_template "redirect"
