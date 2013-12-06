@@ -11,7 +11,7 @@ class RedirectorTest < ActiveSupport::TestCase
     Redirector.setup do |config|
       config.tracking_url = "http://track.example.com/?url={url}"
     end
-    p = Fabricate.build :product
+    p = Product.new
     assert_equal 'http://track.example.com/?url=http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi=product_foobar', p.redirect_path
   end
 
@@ -20,7 +20,7 @@ class RedirectorTest < ActiveSupport::TestCase
   end
 
   test "generate redirect_path for model" do
-    p = Fabricate.build :product
+    p = Product.new
     assert_equal 'http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi=product_foobar', p.redirect_path
   end
 
@@ -36,22 +36,22 @@ class RedirectorTest < ActiveSupport::TestCase
   end
 
   test 'skip url escape if affiliate_url matches ignore filter' do
-    p = Fabricate.build :product, affiliate_uri: 'http://click.affiliator.com?url={url}&epi={epi}'
+    p = Product.new affiliate_uri: 'http://click.affiliator.com?url={url}&epi={epi}'
     assert_equal 'http://click.affiliator.com?url=http://store.com/product&epi=product_foobar', p.redirect_path
   end
 
   test 'should use (unescaped) path_url if build_url is blank' do
-    p = Fabricate.build :product, affiliate_uri: nil
+    p = Product.new affiliate_uri: nil
     assert_equal "http://store.com/product", p.redirect_path
   end
 
   test 'should return nil when no path exists' do
-    p = Fabricate.build :product, url: nil
+    p = Product.new url: nil
     assert_nil p.redirect_path
   end
 
   test "should support String as option" do
-    p = Fabricate.build :product
+    p = Product.new
     p.class_eval { redirect_with :base => proc { |x| x.affiliate_uri }, :path => :url, :epi => '{invk_epi}' }
     assert_equal 'http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi={invk_epi}', p.redirect_path
   end
@@ -89,7 +89,10 @@ end
 class Redirector::RedirectControllerTest < ActionController::TestCase
 
   test 'redirect action and view' do
-    product = Fabricate(:product)
+    product = Product.new
+
+    puts "PRODUCT_ID: #{product.id.inspect}"
+
     get :redirect, product_id: product.id
     assert_response :success
     assert_template "redirect"
@@ -101,7 +104,7 @@ end
 class Redirector::ViewHelpersTest < ActionView::TestCase
 
   def setup
-    @product = Fabricate(:product, name: 'foobar')
+    @product = Product.new(name: 'foobar')
   end
 
   test 'Included in ActionView::Base' do
