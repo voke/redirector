@@ -9,8 +9,5 @@ module Redirector
       link_to(*args,&block)
     end
 
-    def analytics_helper
-    end
-
   end
 end
