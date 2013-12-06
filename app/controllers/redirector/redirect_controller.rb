@@ -1,10 +1,9 @@
 class Redirector::RedirectController < ApplicationController
 
-  before_filter :find_resource, :run_redirect_hook, only: :redirect
+  before_filter :find_resource, :set_redirect_path, :run_redirect_hook, only: :redirect
 
   # GET /redirect
   def redirect
-    @redirect_path = @resource.redirect_path
     render :layout => false
   end
 
@@ -14,8 +13,12 @@ class Redirector::RedirectController < ApplicationController
       @resource = resource_class.find_for_redirect resource_id
     end
 
+    def set_redirect_path
+      @redirect_path = @resource.redirect_path
+    end
+
     def run_redirect_hook
-      before_redirect(@resource) if respond_to?(:before_redirect)
+      before_redirect(@resource, @redirect_path) if respond_to?(:before_redirect)
     end
 
     def extract_resource
