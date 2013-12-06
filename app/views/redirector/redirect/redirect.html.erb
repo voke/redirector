@@ -9,19 +9,28 @@
 
 		div {
 			border: 1px solid #DDDDDD;
-			color: #666;
-			font: small "Lucida Grande", Helvetica;
+			color: #264466;
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 			margin: 200px auto 0;
-			padding: 20px;
 			text-align: center;
-			width: 300px;
-			font-weight: bold;
+			font-size: 18px;
+			font-weight: 200;
+			line-height: 1.4;
+			width: 500px;
+			padding: 10px;
+			border-radius: 10px;
 		}
 
 		a, a:visited {
-			color: #26527c;
+			color: #278eb5;
 			text-decoration: none;
-			border-bottom: 1px solid #26527c;
+		}
+
+		.caption {
+			font-size: 26px;
+			font-weight: 500;
+			line-height: 1.1;
+			margin: 0.67em 0;
 		}
 
 	</style>
@@ -30,12 +39,14 @@
 
 <body>
 
+	<%= render 'hook' %>
+
 	<div>
-		<p><%= t('redirector.redirecting_to') %></p>
+		<p class="caption"><%= t('redirector.redirecting_to') %></p>
 		<p><%= link_to(t('redirector.follow_link'), @redirect_path) %></p>
 	</div>
 
-<script language="javascript">document.location.href = "<%= raw @redirect_path %>";</script>
+	<script language="javascript">document.location.href = "<%= raw @redirect_path %>";</script>
 
 </body>
 </html>
