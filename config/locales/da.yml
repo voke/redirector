@@ -1,0 +1,4 @@
+da:
+  redirector:
+    redirecting_to: "Omdirigerer..."
+    follow_link: 'Klik her hvis du ikke er omdirigeret automatisk indenfor et par sekunder'
