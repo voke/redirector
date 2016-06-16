@@ -109,27 +109,27 @@ class Redirector::ViewHelpersTest < ActionView::TestCase
   end
 
   test 'redirect_link_to with resource' do
-    expected = %q{<a href="/products/foobar/redirect" data-external="true" rel="nofollow">Go to product</a>}
+    expected = %q{<a data-external="true" rel="nofollow" href="/products/foobar/redirect">Go to product</a>}
     assert_equal(expected, redirect_link_to('Go to product', @product))
   end
 
   test "redirect_link_to with block" do
-    expected = %q{<a href="/products/foobar/redirect" data-external="true" rel="nofollow">My block data</a>}
+    expected = %q{<a data-external="true" rel="nofollow" href="/products/foobar/redirect">My block data</a>}
     assert_equal(expected, redirect_link_to(@product) { 'My block data' })
   end
 
   test 'redirect_link_to with resource and additional html_options' do
-    expected = %q{<a href="/products/foobar/redirect" class="qwerty" data-external="true" rel="nofollow">Go to product</a>}
+    expected = %q{<a data-external="true" rel="nofollow" class="qwerty" href="/products/foobar/redirect">Go to product</a>}
     assert_equal(expected, redirect_link_to('Go to product', @product, class: 'qwerty'))
   end
 
   test 'redirect_link_to with block and additional html_options' do
-    expected = %q{<a href="/products/foobar/redirect" class="qwerty" data-external="true" rel="nofollow">My block data</a>}
+    expected = %q{<a data-external="true" rel="nofollow" class="qwerty" href="/products/foobar/redirect">My block data</a>}
     assert_equal(expected, redirect_link_to(@product, class: 'qwerty') { 'My block data'} )
   end
 
   test 'redirect_link_to with overwritten html_options' do
-    expected = %q{<a href="/products/foobar/redirect" class="qwerty" data-external="false" rel="foobar">My block data</a>}
+    expected = %q{<a data-external="false" rel="foobar" class="qwerty" href="/products/foobar/redirect">My block data</a>}
     assert_equal(expected, redirect_link_to(@product, class: 'qwerty', 'data-external' => false, 'rel' => 'foobar' ) { 'My block data'} )
   end
 
