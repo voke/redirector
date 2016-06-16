@@ -24,6 +24,12 @@ class RedirectorTest < ActiveSupport::TestCase
     assert_equal 'http://network.com?url=http%3A%2F%2Fstore.com%2Fproduct&epi=product_foobar', p.redirect_path
   end
 
+  test "support :landing_page option for redirect_path" do
+    p = Product.new
+    url = p.redirect_path(landing_page: 'http://example.com/custom')
+    assert_equal 'http://network.com?url=http%3A%2F%2Fexample.com%2Fcustom&epi=product_foobar', url
+  end
+
   test "ignore encoding hosts" do
     ignored_hosts = [
       'click.affiliator.com',

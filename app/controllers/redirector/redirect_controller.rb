@@ -14,7 +14,7 @@ class Redirector::RedirectController < ApplicationController
     end
 
     def set_redirect_path
-      @redirect_path = @resource.redirect_path
+      @redirect_path = @resource.redirect_path(landing_page: params[:lp].presence)
     end
 
     def run_redirect_hook

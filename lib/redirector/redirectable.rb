@@ -24,22 +24,22 @@ module Redirector
       end
 
     end
-    
+
     # TODO: Add redirect_url as alias
     # Returns the generated url depending on redirect_options.
     # This is the method that is called on the resource in the controller.
     #
-    def redirect_path
-      generate_redirect_url
+    def redirect_path(landing_page: nil)
+      generate_redirect_url(landing_page)
     end
 
     private
 
       # Returns the complete url depending on redirect_options.
       #
-      def generate_redirect_url
+      def generate_redirect_url(landing_page = nil)
         rp = RedirectPath.new
-        rp.landing_page = call_redirect_option(:path)
+        rp.landing_page = landing_page || call_redirect_option(:path)
         rp.base = call_redirect_option(:base)
         rp.epi = call_redirect_option(:epi)
         affiliate_url = rp.build_url
